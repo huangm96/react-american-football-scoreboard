@@ -10,6 +10,16 @@ function App() {
 
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
+  const [down, setDown] = useState(0);
+  const [quarter, setQuarter] = useState(0);
+
+  const handleReset = e => {
+    e.preventDefault();
+    setHomeScore(0);
+    setAwayScore(0);
+    setDown(0);
+    setQuarter(0);
+  };
   
 return (
     <div className="container">
@@ -28,7 +38,12 @@ return (
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow
+    down={down}
+    // toGo ={toGo} 
+    // ballOn ={ballOn}
+     quarter = {quarter}
+  />
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -40,6 +55,23 @@ return (
           <button className="awayButtons__touchdown" onClick={()=> setAwayScore(awayScore + 7)}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={()=> setAwayScore(awayScore + 3)}>Away Field Goal</button>
         </div>
+        <div className="bottomRowButtons">
+          <button className="down" onClick={()=> {
+            if(down===4){
+              setDown(0);
+            }else{setDown(down +1)
+            }}}>
+              Down</button>
+          <button className="quarter" onClick={()=> {
+            if(quarter===4){
+              setQuarter(0);
+            }else{setQuarter(quarter +1)
+            }}}>Quarter</button>
+        </div>
+        
+      </section>
+      <section>
+      <button className="Reset" onClick={handleReset}>Reset</button>
       </section>
     </div>
   );
