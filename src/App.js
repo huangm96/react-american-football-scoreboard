@@ -12,6 +12,9 @@ function App() {
   const [awayScore, setAwayScore] = useState(0);
   const [down, setDown] = useState(0);
   const [quarter, setQuarter] = useState(0);
+  const [toGo, setToGo] = useState(0);
+  const [ballOn, setBallOn] = useState(0);
+  
 
   const handleReset = e => {
     e.preventDefault();
@@ -19,8 +22,27 @@ function App() {
     setAwayScore(0);
     setDown(0);
     setQuarter(0);
+    setToGo(0);
+    setBallOn(0);
   };
-  
+  const [toGoNum, setToGoNum] = useState(0);
+  const [ballOnNum, setBallOnNum] = useState(0);
+
+  const handleToGoChange = event => {
+    setToGoNum(event.target.value);
+  };
+
+  const handleBallOnChange = event => {
+    setBallOnNum(event.target.value);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    setToGo(toGoNum);
+    setBallOn(ballOnNum);;
+  };
+
+
 return (
     <div className="container">
       <section className="scoreboard">
@@ -40,8 +62,8 @@ return (
         </div>
         <BottomRow
     down={down}
-    // toGo ={toGo} 
-    // ballOn ={ballOn}
+     toGo ={toGo} 
+    ballOn ={ballOn}
      quarter = {quarter}
   />
       </section>
@@ -68,7 +90,19 @@ return (
             }else{setQuarter(quarter +1)
             }}}>Quarter</button>
         </div>
-        
+        <div>
+        <form onSubmit={event => handleSubmit(event)}>
+        <label>
+          <p>To Go: </p>
+          <input type="text" onChange={event => handleToGoChange(event)} />
+        </label>
+        <label>
+        <p>Ball On: </p>
+          <input type="text" onChange={event => handleBallOnChange(event)} />
+        </label>
+        <button className="submitButton">Submit!</button>
+      </form>
+      </div>
       </section>
       <section>
       <button className="Reset" onClick={handleReset}>Reset</button>
