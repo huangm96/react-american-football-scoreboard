@@ -116,7 +116,20 @@
 .homeButtons__touchdown,
 .homeButtons__fieldGoal,
 .awayButtons__touchdown,
-.awayButtons__fieldGoal {
+.awayButtons__fieldGoal,
+.submitButton{
   margin: 1rem;
   border-radius: 4px;
 }
+.down,
+ .quarter{
+  margin: 1rem 1rem 5rem 1rem;
+  border-radius: 4px;
+ }
+
+.Reset{
+  margin:0 auto 100px 70%;
+  border-radius: 4px;
+
+}
+
